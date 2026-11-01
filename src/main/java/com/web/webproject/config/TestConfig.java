@@ -12,6 +12,7 @@ import com.web.webproject.entities.Category;
 import com.web.webproject.entities.Order;
 import com.web.webproject.entities.OrderItem;
 import com.web.webproject.entities.OrderStatus;
+import com.web.webproject.entities.Payment;
 import com.web.webproject.entities.Product;
 import com.web.webproject.entities.User;
 import com.web.webproject.repositories.CategoryRepository;
@@ -83,5 +84,10 @@ public class TestConfig implements CommandLineRunner{ //classe para instanciar o
        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+       Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+       o1.setPayment(pay1); // associei pedido 1 com pagamento pay1
+
+       orderRepository.save(o1);
     }
 }
